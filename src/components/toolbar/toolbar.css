@@ -31,9 +31,10 @@
 .toolbar-option {
     text-decoration: none;
     border: none;
-    width: 7.0rem;
+    width: 5.0rem;
 
     font-weight: 700;
+    text-align: center;
     padding: 0.4rem 1.0rem;
     cursor: grab;
 }
