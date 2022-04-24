@@ -21,7 +21,11 @@
     font-weight: 600;
     margin: 0 1.0rem;
 }
-
+@media only screen and (max-width: 500px) {
+    #title {
+      font-size: 1.5rem;  
+    }
+  }
 .logo {
     height: 2.5rem;
     width: 2.5rem;
@@ -57,7 +61,7 @@
     text-decoration: none;
     border: none;
     width: 100%;
-    width: 6.0rem;
+    min-width: 6.0rem;
     /* margin: auto; */
 
     font-weight: 700;

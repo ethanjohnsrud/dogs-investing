@@ -1,0 +1,40 @@
+#graph {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 2.0rem;
+
+    width: 90vw;
+    padding: 1.0rem 2.0rem;;
+}
+
+#graph-chart {
+    width: 100%;
+    max-width: 70vw;
+}
+
+#graph-analysis {
+    position: relative;
+    display: grid;
+    grid-auto-flow: row;
+    align-items: center; 
+    justify-content: start;
+    text-align: left;
+
+    background-color: grey;
+    padding: 1.0rem;
+    border-radius: 1.0rem;
+}
+
+.graph-detail {
+    text-align: left;
+    color: whitesmoke;
+    font-weight: 600;
+}
+
+#graph-moon {
+    position: absolute;
+    top: -2.0rem;
+    right: -2.0rem;
+    width: 10.0rem;
+    height: 10.0rem;
+}

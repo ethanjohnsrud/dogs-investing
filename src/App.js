@@ -26,7 +26,7 @@ function App() {
     <div className="App">
 
      <Toolbar />
-     
+     <Graph />
       <ProfileDisplay />
       {/* <ProfileIcon {...DOGS[0]} /> */}
 

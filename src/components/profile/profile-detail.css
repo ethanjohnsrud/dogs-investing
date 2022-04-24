@@ -17,6 +17,7 @@
     top: 50%;
     transform: translate(-50%,-50%);
     z-index: 10;
+    max-width: 90vw;
 
     display: grid;
     grid-template-columns: auto auto;
@@ -104,6 +105,14 @@ input, textarea {
     border-radius: 15%;
 
 }
+@media only screen and (max-width: 768px) {
+    .profile-size-icon-image {
+        height: 40px;
+        width: 40px;
+        border-radius: 10%;
+    
+    }
+  }
 
 .profile-size-icon-label {
     position: absolute;
