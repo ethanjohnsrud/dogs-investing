@@ -7,9 +7,9 @@ import './App.css';
 import ProfileDisplay from './components/profile/profile-display';
 import ProfileIcon from './components/profile/profile-icon';
 import ProfileDetail from './components/profile/profile-detail';
-import ProfileEdit from './components/profile/profile-edit';
 import Graph from './components/graph/graph';
 import Fact from './components/fact/fact';
+import Toolbar from './components/toolbar/toolbar';
 
 //Import Initial Data OR API Call
 
@@ -24,12 +24,13 @@ function App() {
 
   return (
     <div className="App">
+
+     <Toolbar />
      
       <ProfileDisplay />
       {/* <ProfileIcon {...DOGS[0]} /> */}
 
       {/* <ProfileDetail />
-      <ProfileEdit />
 
       <Fact />
 

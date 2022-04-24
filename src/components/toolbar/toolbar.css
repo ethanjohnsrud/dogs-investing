@@ -1,0 +1,55 @@
+#toolbar {
+    display: flex;
+    flex-direction: row;
+
+    background-color: darkgray;
+}
+
+@media only screen and (max-width: 768px) {
+    #toolbar {
+        flex-wrap: wrap;
+    }
+  }
+
+.toolbar-search-field {
+    text-decoration: none;
+    border: none;
+    margin: 0 1.0rem;
+    width: 100%;
+
+    font-size: 1.2rem;
+    color: white;
+}
+
+.toolbar-option-box {
+    display: grid;
+    grid-template-columns: auto auto;
+
+    margin : 0.5rem 1.0rem
+}
+
+.toolbar-option {
+    text-decoration: none;
+    border: none;
+    width: 7.0rem;
+
+    font-weight: 700;
+    padding: 0.4rem 1.0rem;
+    cursor: grab;
+}
+
+.toolbar-option-left {
+    border-top-left-radius: 1.0rem;
+    border-bottom-left-radius: 1.0rem;
+}
+
+.toolbar-option-right {
+    border-top-right-radius: 1.0rem;
+    border-bottom-right-radius: 1.0rem;
+}
+
+.toolbar-option-selected {
+    color: white;  
+    background-color: black;
+}
+
