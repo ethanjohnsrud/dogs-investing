@@ -1,0 +1,118 @@
+#profile-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  margin: 1.5rem;
+  
+}
+
+.profile-icon {
+    display: block;
+    cursor: grab;
+
+}
+.profile-image {
+    width: 9.375rem;
+    height: 9.375rem;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+
+/* Profile Name Bone  */
+.profile-label-box {
+    position: relative;    
+    display: block;
+    margin: auto;
+    margin-top: -3.15rem;
+    width: 9.375rem;
+    height: 3.75rem;
+    background: transparent;
+    border: none;
+
+    /* Bone Color  */
+    --bone-color: #daceb8;    
+}
+  .profile-label-c {
+    background: var(--bone-color);
+    height: 1.875rem;
+    width: 1.875rem;
+    border: 1px solid #000;
+    border-radius: 50%;
+    position:absolute;
+  }
+  .profile-label-c1{
+    left: 0;
+    top: 0;
+  }
+  .profile-label-c2{
+    right: 0;
+    top: 0;
+  }
+  .profile-label-c3{
+    left: 0;
+    bottom: 0;
+  }
+  .profile-label-c4{
+    bottom: 0;
+    right: 0;
+  }
+  .profile-label-b1 {
+    position:absolute;  
+    overflow: hidden;
+    background: var(--bone-color);
+    height: 1.875rem;
+    width: 7.5rem;
+    left: 0.9375rem;
+    top: 0.9375rem;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+
+  
+  .profile-label-b2 {
+    position: absolute;
+    left: 0.9375rem;
+    top: 0;
+    width: 5.625rem;
+    height: 1.875rem;
+    line-height: 1.875rem;
+    text-align: center; 
+  }
+  .profile-label-text {
+    font-weight: 700;
+  }
+
+  /* Scroll Long Name Text  */  
+    /* for Firefox */
+@-moz-keyframes text-scroll {
+    from { -moz-transform: translateX(100%); }
+    to { -moz-transform: translateX(-100%); }
+  }
+  
+  /* for Chrome */
+  @-webkit-keyframes text-scroll {
+    from { -webkit-transform: translateX(100%); }
+    to { -webkit-transform: translateX(-100%); }
+  }
+  
+  @keyframes text-scroll {
+    from {
+      -moz-transform: translateX(100%);
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+    }
+    to {
+      -moz-transform: translateX(-100%);
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+    }
+    }
+.scroll-overflow {
+    -moz-animation: text-scroll 10s linear infinite;
+    -webkit-animation: text-scroll 10s linear infinite;
+    animation: text-scroll 10s linear infinite;
+}
