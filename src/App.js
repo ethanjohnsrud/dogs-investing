@@ -30,11 +30,11 @@ function App() {
       <ProfileDisplay />
       {/* <ProfileIcon {...DOGS[0]} /> */}
 
-      {/* <ProfileDetail />
+      {/* <ProfileDetail /> */}
 
       <Fact />
 
-      <Graph /> */}
+      {/* <Graph /> */}
 
     </div>
   );

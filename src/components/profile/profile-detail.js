@@ -116,7 +116,7 @@ string : invalid data explanation
 
     return (<div style={{position: isPreview() ? 'relative' : 'static'}}>
         {!isPreview() ? <div className='shade-background' onClick={(e)=>{e.stopPropagation(); props.onClose(e);}}></div> : <div></div>}
-        <div className={`profile-detail`} onClick={()=>isPreview() ? setMode('display') : null}>
+        <div className={`profile-detail`} onClick={(e)=>{e.stopPropagation(); if(isPreview())  setMode('display');}}>
             
 
             {isPreview() ? <span></span>
@@ -147,7 +147,7 @@ string : invalid data explanation
                 : <label className='profile-text' >{props.balance} &ETH;</label>}
                 
             {!isPreview() ? <label className='profile-attribute' >Description:</label>:<span></span>}
-            {isEdit() ? <textarea className='profile-text' style={{gridColumn: '1 / span 2'}} rows='5' value={description} onChange={(event)=>setBalance(event.target.value)}/>
+            {isEdit() ? <textarea className='profile-text' style={{gridColumn: '1 / span 2'}} rows='5' value={description} onChange={(event)=>setDescription(event.target.value)}/>
             : !isPreview() ? <label className='profile-text' style={{gridColumn: '1 / span 2'}} >{props.description}</label>:<span></span>}
 
             {isPreview() ? <span></span>

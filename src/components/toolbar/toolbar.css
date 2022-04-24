@@ -1,37 +1,64 @@
 #toolbar {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    /* flex-direction: row; */
+    /* width: 100%; */
+    padding: 0.5rem 1.0rem;
 
     background-color: darkgray;
 }
+#toolbar-search-criteria {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    text-align: center;
+}
+#title {
+    color: white;
+    white-space: nowrap;
+    overflow-x: auto;
+    font-size: 2.0rem;
+    font-weight: 600;
+    margin: 0 1.0rem;
+}
 
-@media only screen and (max-width: 768px) {
-    #toolbar {
-        flex-wrap: wrap;
-    }
-  }
+.logo {
+    height: 2.5rem;
+    width: 2.5rem;
+    margin: auto;
+    cursor: pointer;
+}
+
 
 .toolbar-search-field {
     text-decoration: none;
     border: none;
     margin: 0 1.0rem;
-    width: 100%;
+    width: calc(100vw - 12.0rem);
+    /* min-width: 300px; */
 
+    text-align: center;
     font-size: 1.2rem;
     color: white;
 }
 
 .toolbar-option-box {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
 
-    margin : 0.5rem 1.0rem
+    /* width: 100%; */
+
+    margin: 0.5rem auto;
 }
 
 .toolbar-option {
     text-decoration: none;
     border: none;
-    width: 5.0rem;
+    width: 100%;
+    width: 6.0rem;
+    /* margin: auto; */
 
     font-weight: 700;
     text-align: center;
@@ -42,11 +69,13 @@
 .toolbar-option-left {
     border-top-left-radius: 1.0rem;
     border-bottom-left-radius: 1.0rem;
+    margin-left: auto;
 }
 
 .toolbar-option-right {
     border-top-right-radius: 1.0rem;
     border-bottom-right-radius: 1.0rem;
+    margin-right: auto;
 }
 
 .toolbar-option-selected {
