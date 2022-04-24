@@ -12,12 +12,14 @@ const Graph = () => {
     return (<div id='graph'>
         <img id='graph-chart' src={graphSample} alt='Sample Graph Image' />
         <div id='graph-analysis' >
-            <img id='graph-moon' src={dogeMoon} alt='Doge Dog on the Moon' />
+            {/* <img id='graph-moon' src={dogeMoon} alt='Doge Dog on the Moon' /> */}
             <label className='graph-detail' >Current: $0.13/&ETH;</label>
             <label className='graph-detail' >Average Holdings: 3500 &ETH;</label>
             <label className='graph-detail' >USD Value Equivalence: $462.13</label>
             <label className='graph-detail' >30-day Loss: $16.01</label>
-        </div>        
+        </div>  
+        <img id='graph-moon' src={dogeMoon} alt='Doge Dog on the Moon' />
+      
         </div>);
 
 }

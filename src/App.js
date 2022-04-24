@@ -26,16 +26,16 @@ function App() {
     <div className="App">
 
      <Toolbar />
-     <Graph />
-      <ProfileDisplay />
-      {/* <ProfileIcon {...DOGS[0]} /> */}
+     <br/>
+      <Graph />
+        <ProfileDisplay />
+        {/* <ProfileIcon {...DOGS[0]} /> */}
 
-      {/* <ProfileDetail /> */}
+        {/* <ProfileDetail /> */}
 
-      <Fact />
+        <Fact />
 
-      {/* <Graph /> */}
-
+        {/* <Graph /> */}
     </div>
   );
 }

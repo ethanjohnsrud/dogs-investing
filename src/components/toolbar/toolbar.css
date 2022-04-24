@@ -1,10 +1,13 @@
 #toolbar {
+    position: sticky;
+    top:0;
+    z-index: 8;
     display: grid;
     /* flex-direction: row; */
     /* width: 100%; */
     padding: 0.5rem 1.0rem;
 
-    background-color: darkgray;
+    background-color: white;
 }
 #toolbar-search-criteria {
     display: flex;
@@ -14,7 +17,7 @@
     text-align: center;
 }
 #title {
-    color: white;
+    color: black;
     white-space: nowrap;
     overflow-x: auto;
     font-size: 2.0rem;

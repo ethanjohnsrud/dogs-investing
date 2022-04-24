@@ -1,5 +1,5 @@
 .shade-background {
-    position: absolute;
+    position: fixed;
     display: block;
     z-index: 2;
     width: 100vw;
@@ -25,7 +25,7 @@
     column-gap: 1.0rem;
     row-gap: 0.3rem;
 
-    background-color: whitesmoke;
+    background-color: white;
     border-radius: 1.0rem;
     padding: 1.0rem;
     margin: 0.5rem;
@@ -63,7 +63,7 @@
     padding: 0.2rem 1.5rem;
     font-weight: 800;
     /* max-width: 5.0rem; */
-    background-color: grey;
+    background-color: white;
 
 }
 .profile-button-delete {

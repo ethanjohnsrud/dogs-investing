@@ -6,6 +6,8 @@ body {
   margin: 0;
   /* overflow-x: hidden; */
 
+  background-color: #E5E4E2;
+
   font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -22,3 +24,4 @@ label, button, input, textarea {
   text-decoration: none;
   border: none;
 }
+

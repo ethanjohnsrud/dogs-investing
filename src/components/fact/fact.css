@@ -1,0 +1,98 @@
+#fact {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+#fact-text {
+    position: absolute;
+    transform: rotate(-35deg);
+    /* z-index: 5; */
+    overflow: auto;
+    height: 180px;
+    width: 200px;
+    left: 30px;
+    top: 40px;
+
+    line-height: 1.5rem;
+    letter-spacing: 0.08rem;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    white-space: pre-line;
+}
+/* Paw Print */
+.fact-pad {
+    display: block;
+    position: absolute;
+    width: 87.5px;
+    height: 94.5px;
+
+    background-color: #654321;
+    -webkit-border-radius: 220.5px 220.5px 220.5px 220.5px / 378px     378px 252px 252px;
+    border-radius: 50%  50%  70%  50%  / 60%   60%         50%  40%;
+    
+}       
+.fact-large {
+   width: 240px;
+   height: 255px;
+   transform: rotate(35deg);
+   left: 50.002px;
+   bottom: 50.002px;
+} 
+.fact-small-1 {
+   transform: rotate(70deg);
+   left: 340px;
+   bottom: 165px;
+}
+.fact-small-2 {
+   transform: rotate(55deg);
+   left: 285px;
+   bottom: 275px;
+}  
+.fact-small-3 {
+   transform: rotate(35deg);
+   left: 175px;
+   bottom: 335px;
+}
+.fact-small-4 {
+   transform: rotate(10deg);
+   left: 50px;
+   bottom: 315px;
+}
+    
+@media only screen and (max-width: 768px) {
+    #fact-text {
+        height: 120px;
+        width: 130px;
+        left: 20px;
+        top: 25px;
+    
+        /* font-size: 1.0rem; */
+    }
+    .fact-pad {
+        width: 61px;
+        height: 66px;   
+    }       
+    .fact-large {
+       width: 168px;
+       height: 178px;
+       left: 35px;
+       bottom: 35px;
+    } 
+    .fact-small-1 {
+       left: 238px;
+       bottom: 115px;
+    }
+    .fact-small-2 {
+       left: 200px;
+       bottom: 190px;
+    }  
+    .fact-small-3 {
+       left: 122px;
+       bottom: 235px;
+    }
+    .fact-small-4 {
+       left: 35px;
+       bottom: 220px;
+    }
+  }
