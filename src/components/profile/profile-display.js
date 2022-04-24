@@ -7,10 +7,15 @@ import ProfileIcon from './profile-icon';
 import './profile.css'
 
 const ProfileDisplay = (props) => {
-
+    const SELECTED = useSelector(root => root.selection);
+    const DOGS = useSelector(root => root.dogs);
 
     return (<div id='profile-display'>
-      
+        {
+            SELECTED.map((d,i) => 
+                <ProfileIcon key={`Profile-${d.id}`} {...DOGS.find(k => k.id == d.id)} />        
+            )
+        }
         </div>);
 
 }
