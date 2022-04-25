@@ -65,7 +65,7 @@ const selectionReducer = (state = initialSelection, action) => {
     case 'sort-exclude':
         return [...prioritySearch(action.payload, false)];
     case 'filter-exclude':
-        return [...prioritySearch(action.payload, false).filter(d => d.score < 0)];
+        return [...prioritySearch(action.payload, false).filter(d => d.score >= 0)];
 
     default: return initialSelection; 
   }

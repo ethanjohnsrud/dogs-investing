@@ -84,7 +84,7 @@ string : invalid data explanation
         return change;
     }
     
-    useEffect(()=>{  const result = isChanged(); console.log('INPUT INVALID: ', result);
+    useEffect(()=>{  const result = isChanged(); 
         if(typeof result === "string") setErrorText(result);
     }, [name, owner, imageURL, breed, balance, description, size]);
 
@@ -116,7 +116,7 @@ string : invalid data explanation
 
     return (<div style={{position: isPreview() ? 'relative' : 'static'}}>
         {!isPreview() ? <div className='shade-background' onClick={(e)=>{e.stopPropagation(); props.onClose(e);}}></div> : <div></div>}
-        <div className={`profile-detail`} onClick={(e)=>{e.stopPropagation(); if(isPreview())  setMode('display');}}>
+        <div className={`profile-detail`} style={{position: isPreview() ? 'absolute' : 'fixed'}} onClick={(e)=>{e.stopPropagation(); if(isPreview())  setMode('display');}}>
             
 
             {isPreview() ? <span></span>

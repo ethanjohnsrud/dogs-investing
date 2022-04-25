@@ -17,25 +17,13 @@ function App() {
   const DOGS = useSelector(root => root.dogs);
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    dispatch({type: 'sort-include', payload: 'american brandon'});
-},[]);
-
-
   return (
     <div className="App">
-
-     <Toolbar />
-     <br/>
+      <Toolbar />
+      <br/>
       <Graph />
-        <ProfileDisplay />
-        {/* <ProfileIcon {...DOGS[0]} /> */}
-
-        {/* <ProfileDetail /> */}
-
-        <Fact />
-
-        {/* <Graph /> */}
+      <ProfileDisplay />
+      <Fact />
     </div>
   );
 }

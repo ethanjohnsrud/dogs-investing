@@ -91,7 +91,7 @@ export default [
     },
     {
       id: 9,
-      name: "Vyla I'm a Bad Doggy",
+      name: "Vyla",
       breed: "Poodle",
       owner: "Skip",
       size: "SM",
