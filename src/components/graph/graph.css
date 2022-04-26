@@ -31,10 +31,12 @@
 #graph-chart-header {
     display: grid;
     grid-auto-flow: column;
+    width: calc(100% - 4.0rem);
 }
 
 .graph-chart-mode {
     border: none;
+    
     background-color: lightgrey;
     padding: 0.5rem;
     color: black;   
@@ -117,8 +119,8 @@
     white-space: nowrap;
 
     border-radius: 0.5rem;
-    padding: 0.25rem;
-    font-size: 0.7rem;
+    padding: 0.5rem;
+    font-size: 0.8rem;
     background-color: rgba(0,0,0,0.8);
     color: white;
 }

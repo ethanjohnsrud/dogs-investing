@@ -20,7 +20,7 @@
     font-size: 1.2rem;
     white-space: pre-line;
 
-    cursor: grabbing;
+    cursor: zoom-in;
 }
 /* Paw Print */
 .fact-pad {
@@ -40,7 +40,7 @@
    transform: rotate(35deg);
    left: 50.002px;
    bottom: 50.002px;
-   cursor: pointer;
+   cursor: zoom-in;
 } 
 .fact-small-1 {
    transform: rotate(70deg);
@@ -61,6 +61,22 @@
    transform: rotate(10deg);
    left: 50px;
    bottom: 315px;
+}
+#paw-tip {
+   position: absolute;
+   /* right: 0rem; */
+   /* top: 0rem; */
+   z-index: 17;
+   width: fit-content;
+   white-space: nowrap;
+   left: 250px;
+   bottom: 250px;
+
+   border-radius: 0.5rem;
+   padding: 0.5rem;
+   font-size: 0.8rem;
+   background-color: rgba(0,0,0,0.8);
+   color: white;
 }
     
 @media only screen and (max-width: 768px) {
@@ -98,21 +114,8 @@
        left: 35px;
        bottom: 220px;
     }
+    #paw-tip {
+      left: 200px;
+      bottom: 215px;
+    }
   }
-
-  #paw-tip {
-   position: absolute;
-   /* right: 0rem; */
-   /* top: 0rem; */
-   z-index: 17;
-   width: fit-content;
-   white-space: nowrap;
-   left: 250px;
-   bottom: 200px;
-
-   border-radius: 0.5rem;
-   padding: 0.25rem;
-   font-size: 0.7rem;
-   background-color: rgba(0,0,0,0.8);
-   color: white;
-}
