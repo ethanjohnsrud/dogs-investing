@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/dogs-investing/static/css/main.25b2e49b.css",
-    "main.js": "/dogs-investing/static/js/main.332f51f7.js",
-    "static/media/sample-chart.png": "/dogs-investing/static/media/sample-chart.de8f75e6be747df1815d.png",
+    "main.css": "/dogs-investing/static/css/main.ce2ad4f1.css",
+    "main.js": "/dogs-investing/static/js/main.855b06b4.js",
     "static/media/doge-moon.png": "/dogs-investing/static/media/doge-moon.fadca0729d1084b5927e.png",
-    "static/media/logo-add-white.png": "/dogs-investing/static/media/logo-add-white.d98400efc681817d812c.png",
+    "static/media/logo-add.png": "/dogs-investing/static/media/logo-add.00c42ad838efcaef2e27.png",
     "index.html": "/dogs-investing/index.html",
-    "main.25b2e49b.css.map": "/dogs-investing/static/css/main.25b2e49b.css.map",
-    "main.332f51f7.js.map": "/dogs-investing/static/js/main.332f51f7.js.map"
+    "main.ce2ad4f1.css.map": "/dogs-investing/static/css/main.ce2ad4f1.css.map",
+    "main.855b06b4.js.map": "/dogs-investing/static/js/main.855b06b4.js.map"
   },
   "entrypoints": [
-    "static/css/main.25b2e49b.css",
-    "static/js/main.332f51f7.js"
+    "static/css/main.ce2ad4f1.css",
+    "static/js/main.855b06b4.js"
   ]
 }
