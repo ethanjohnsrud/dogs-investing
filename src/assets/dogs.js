@@ -6,7 +6,6 @@ export default [
       owner: "Dave",
       size: "LG",
       description: "An energetic lab that loves to play",
-      balance: 3500,
       transactions: [
         {date: 1645205581000, amount: 3000},
         {date: 1647538092000, amount: -1500},
@@ -21,7 +20,6 @@ export default [
       owner: "Dave",
       size: "LG",
       description: "Office mommy dog",
-      balance: 10000,
       transactions: [
         {date: 1641833592000, amount: 1500},
         {date: 1647494272000, amount: -250},
@@ -36,7 +34,6 @@ export default [
       owner: "Dan",
       size: "SM",
       description: "A fluffy terrier mix who runs on treats",
-      balance: 5000,
       transactions: [
         {date: 1643915804000, amount: 800},
         {date: 1647544604000, amount: 1600},
@@ -51,7 +48,6 @@ export default [
       owner: "Christina",
       size: "MD",
       description: "A brindled pitbull princess",
-      balance: 7500,
       transactions: [
         {date: 1641801754000, amount: 2500},
         {date: 1647560882000, amount: -1000},
@@ -66,7 +62,6 @@ export default [
       owner: "Sara",
       size: "XL",
       description: "A great pyrenees mix often confused with a horse",
-      balance: 6500,
       transactions: [
         {date: 1644112566000, amount: 100},
         {date: 1647717404000, amount: 1800},
@@ -81,7 +76,6 @@ export default [
       owner: "Dan",
       size: "MD",
       description: "A tutu-flaunting American bulldog/pitbull mix",
-      balance: 9500,
       transactions: [
         {date: 1644986495000, amount: 1500},
         {date: 1646814943000, amount: 500},
@@ -96,7 +90,6 @@ export default [
       owner: "Monica",
       size: "LG",
       description: "A wolf-sized pup with piercing blue eyes",
-      balance: 7000,
       transactions: [
         {date: 1643975015000, amount: 500},
         {date: 1647187717000, amount: -50},
@@ -111,7 +104,6 @@ export default [
       owner: "Brandon",
       size: "MD",
       description: "A belly-rub loving hound-mix",
-      balance: 5500,
       transactions: [
         {date: 1645676329000, amount: 500},
         {date: 1646929973000, amount: 850},
@@ -126,7 +118,6 @@ export default [
       owner: "Skip",
       size: "XS",
       description: "The eldest, wisest, and tiniest dog of the office",
-      balance: 4500,
       transactions: [
         {date: 1641404754000, amount: 1700},
         {date: 1647951691000, amount: -650},
@@ -141,7 +132,6 @@ export default [
       owner: "Skip",
       size: "SM",
       description: "The resident toy and bone hoarder",
-      balance: 8500,
       transactions: [
         {date: 1645066816000, amount: 3500},
         {date: 1647186579000, amount: -1700},

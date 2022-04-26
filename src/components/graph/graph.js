@@ -41,7 +41,7 @@ const getGrowth = (id, value = false) => getBalance(id, value) - ((value && DOGE
                       : (DOGS.find(d=>d.id==id).transactions.length) ? DOGS.find(d=>d.id==id).transactions[0].amount : 0); 
 
 //Chart Data Formatting
-  useEffect(()=>{if(DOGE && DOGE.length && SELECTED_ID.length) setData((dataType === 'market') ? [
+  useEffect(()=>{if(DOGE && DOGE.length) setData((dataType === 'market' || !SELECTED_ID.length) ? [
       {label: 'High', data: DOGE.map((D) => ({primary: D[0], secondary: D[2]}))}, 
       {label: 'Low', data: DOGE.map((D) => ({primary: D[0], secondary: D[3]}))},
     ]   
@@ -49,7 +49,9 @@ const getGrowth = (id, value = false) => getBalance(id, value) - ((value && DOGE
           .map(d => ({label: d.name, 
             data: DOGE.map((D) => ({primary: D[0], //Dates are in Seconds
                 secondary: d.transactions.reduce((p,c)=> ((c.date/1000)<=(D[0])) ? p+=c.amount : p, 0)*(dataType === 'value' ? D[4] : 1) //Dates in Milliseconds
-          }))})));}, [dataType, SELECTED_ID, DOGS]);
+          }))})));
+  else setData()
+        }, [dataType, SELECTED_ID, DOGS]);
     
   const primaryAxis = useMemo(() => ({getValue: (datum) => getDate(datum.primary*1000)}),[]); //Convert Date to Milliseconds
 

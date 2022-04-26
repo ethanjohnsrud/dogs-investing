@@ -60,7 +60,6 @@ const ProfileDetail = (props) => {
     const [owner, setOwner] = useState(props.owner || '');
     const [imageURL, setImageURL] = useState(props.image || '');
     const [breed, setBreed] = useState(props.breed || '');
-    const [balance, setBalance] = useState(props.balance || 0);
     const [description, setDescription] = useState(props.description || '');
     const [size, setSize] = useState(props.size || 'MD');
     const [transactions, setTransactions] = useState(props.transactions || [{date: new Date().getTime(), amount: 0}]);
@@ -80,8 +79,6 @@ string : invalid data explanation
         else if(props.image != imageURL) change = true;
         if(breed == undefined) return 'Invalid Breed';
         else if(props.breed != breed) change = true;
-        if(isNaN(balance) || balance < 0.0) return 'Invalid Doge Coin Balance';
-        else if(props.balance != balance) change = true;
         if(description == undefined) return 'Invalid Description';
         else if(props.description != description) change = true;
         if(!size || !size.length) return 'Invalid Size';
@@ -93,7 +90,7 @@ string : invalid data explanation
     
     useEffect(()=>{  const result = isChanged(); 
         setErrorText(typeof result === "string" ? result : '');
-    }, [name, owner, imageURL, breed, balance, description, size, transactions]);
+    }, [name, owner, imageURL, breed, description, size, transactions]);
 
     //OnSubmit Handlers
     const dispatch = useDispatch();
@@ -107,7 +104,6 @@ string : invalid data explanation
             owner: owner,
             size: size,
             description: description,
-            balance: balance,
             image: imageURL,
             transactions: transactions.sort((a,b)=>a.date-b.date)
         }});
