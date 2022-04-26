@@ -5,12 +5,17 @@ import { AxisOptions, Chart } from "react-charts"; //Source: https://react-chart
 import '../../index.css';
 import './graph.css'
 
-import DOGE from '../../assets/dogeYTD'; //Tested for Undefined & Empty
+//NOTE :: Unable to source DogeCoin Historical Data from API due to CORS; Data is Cached in File: dogeYTD.js, updated as of: 4-25-2022
+import DOGE from '../../assets/dogeYTD'; //Tested for Undefined & Empty 
 import dogeMoon from '../../assets/doge-moon.png';
 
 import ProfileDetail from '../profile/profile-detail';
 
-
+/*
+  Graph Component :: Responsible for Rendering Dynamic Graph, Formatting Data and Analysis Calculations for Table
+  Three Modes: Holdings, Value, Market
+  Integrates Doge Coin
+*/
 const Graph = () => {
     const DOGS = useSelector(root => root.dogs).profiles;
     const SELECTED_ID = useSelector(root => root.dogs).selectedSearch; //Tested for Empty

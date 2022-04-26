@@ -1,15 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { createRoot } from 'react-dom/client';
-import './index.css';
-import App from './App';
-import{Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';
 
 //Initial Profiles
 import INITIAL_DOG_PROFILES from './assets/dogs.js';
 
-//Priority Search
+/*
+    prioritySearch Method :: Sorts profiles on a point system for matching attributes
+*/
 export const prioritySearch = (profiles, search = '', include = true) => {
     const result = profiles.map((d) => {
         if(!search || !search.length) return {id: d.id, score: d.transactions.reduce((p,t)=>p+t.amount, 0)};
@@ -36,10 +33,15 @@ export const prioritySearch = (profiles, search = '', include = true) => {
   return result;
 }
 
+/*
+    Redux :: dogsReducer Reducer :: Handles App State Management and Updating the UI
+    Manages Searches and changes to profiles via update, add, remove
+*/
 const initialState = {profiles: INITIAL_DOG_PROFILES, selectedSearch: INITIAL_DOG_PROFILES.map(d => ({id: d.id, score: 0}))}; 
 
 const dogsReducer = (state = initialState, action) => { 
   switch(action.type) {
+// Searching Combonations  
     case 'sort-include':
       return {profiles: state.profiles, 
                 selectedSearch: [...prioritySearch(state.profiles, action.payload, true)]};
@@ -55,7 +57,7 @@ const dogsReducer = (state = initialState, action) => {
     case 'filter-exclude':
         return {profiles: state.profiles, 
                   selectedSearch: [...prioritySearch(state.profiles, action.payload, false).filter(d => d.score >= 0)]};
-
+// Profile:: Updating, Adding, Removing
     case 'set':
       return {profiles: [...state.profiles.filter(d => d.id != action.payload.id), {...action.payload}], 
                 selectedSearch: state.selectedSearch};
@@ -73,10 +75,9 @@ const dogsReducer = (state = initialState, action) => {
   }
 }
 
-//Setup Store
+//Redux Store
 const allStateDomains = combineReducers({
   dogs: dogsReducer,
-  // selection: selectionReducer
 });
 
 const store = createStore(allStateDomains,{});;

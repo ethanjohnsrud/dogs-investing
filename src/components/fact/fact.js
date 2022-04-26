@@ -5,6 +5,9 @@ import { useSelector, useDispatch} from 'react-redux';
 import '../../index.css';
 import './fact.css'
 
+/*
+Fact Component :: popups with dynamic relevant fun facts about profiles
+*/
 const Fact = () => {
     const DOGS = useSelector(root => root.dogs).profiles;
     const dispatch = useDispatch();

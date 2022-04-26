@@ -5,6 +5,9 @@ import './profile-icon.css'
 
 import ProfileDetail from './profile-detail';
 
+/*
+    ProfileIcon Component :: Packaged Profile Image and Bone Name
+*/
 const ProfileIcon = (props) => {
     const [showDetailMode, setShowDetailMode] = useState(false);
 

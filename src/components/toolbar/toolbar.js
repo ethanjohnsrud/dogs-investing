@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 
 import '../../index.css';
@@ -9,6 +9,10 @@ import addLogo from '../../assets/logo-add.png';
 
 import ProfileDetail from '../profile/profile-detail';
 
+/*
+    Toolbar Component :: Title, Add Profile Button, and Search Controls
+    Search Options: sort-inclusive, sort-exclusive, filter-inclusive, filter-exclusive
+*/
 const Toolbar = () => {
     const dispatch = useDispatch();
 

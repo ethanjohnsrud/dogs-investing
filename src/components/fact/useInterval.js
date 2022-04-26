@@ -1,14 +1,14 @@
-import React, {useRef, useState, useCallback, useEffect} from 'react';
-
+import React, {useRef, useEffect} from 'react';
+/*
+useInterval Custom Hook :: Generates a constant Interval outside of rendering for the Fact Component
+*/
 export default function useInterval(callback, delay) {
     const savedCallback = useRef();
   
-    // Remember the latest callback.
     useEffect(() => {
       savedCallback.current = callback;
     }, [callback]);
   
-    // Set up the interval.
     useEffect(() => {
       function tick() {
         savedCallback.current();

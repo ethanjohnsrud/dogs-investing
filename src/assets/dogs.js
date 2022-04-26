@@ -1,3 +1,6 @@
+/*
+Initial Profile Data
+*/
 export default [
     {
       id: 1,

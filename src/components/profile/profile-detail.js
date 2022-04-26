@@ -14,7 +14,6 @@ import dogXL from '../../assets/dog-extra-large.png';
 
 import ProfileIcon from './profile-icon';
 
-
 /* THREE MODES OF DISPLAY
 //Preview  : onHover
 -Owner
@@ -44,8 +43,10 @@ import ProfileIcon from './profile-icon';
 -Size Options & Selection
 */
 
-//CREATE CUSTOM HOOK FOR USEsTATE, TO STERALIZE INPUT
-
+/*
+    ProfileDetail Component :: Displays Profile Information and Edit Fields as popup window
+    Three Modes and Displays: preview, display, edit
+*/
 const ProfileDetail = (props) => {
 //Mode Getters
     const [mode, setMode] = useState(props.mode || 'display');
