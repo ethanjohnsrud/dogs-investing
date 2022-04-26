@@ -40,6 +40,7 @@
    transform: rotate(35deg);
    left: 50.002px;
    bottom: 50.002px;
+   cursor: pointer;
 } 
 .fact-small-1 {
    transform: rotate(70deg);
@@ -98,3 +99,20 @@
        bottom: 220px;
     }
   }
+
+  #paw-tip {
+   position: absolute;
+   /* right: 0rem; */
+   /* top: 0rem; */
+   z-index: 17;
+   width: fit-content;
+   white-space: nowrap;
+   left: 250px;
+   bottom: 200px;
+
+   border-radius: 0.5rem;
+   padding: 0.25rem;
+   font-size: 0.7rem;
+   background-color: rgba(0,0,0,0.8);
+   color: white;
+}

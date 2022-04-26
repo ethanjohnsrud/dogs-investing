@@ -1,8 +1,7 @@
 import React, {useRef, useState, useCallback, useEffect} from 'react';
 import useInterval from './useInterval';
 import { useSelector, useDispatch} from 'react-redux';
-// import 'bootstrap/dist/css/bootstrap.css';
-import Tip from 'react-tooltip';
+
 import '../../index.css';
 import './fact.css'
 
@@ -11,6 +10,8 @@ const Fact = () => {
     const dispatch = useDispatch();
     const [prompt, setPrompt] = useState('');
     const [search, setSearch] = useState('');
+    const [showPawTip, setShowPawTip] = useState(false);
+
 
      //Utility Method
      const formatNames = (list, articles = ['','',''], cap = true) => { 
@@ -57,7 +58,7 @@ const Fact = () => {
                     break;
                     case 6:
                     //Size
-                        setPrompt(`${formatNames(DOGS.filter(d => d.size == starterProfile.size).map(d => d.name), [' has a', ' have a'])} ${starterProfile.size} dog.`);
+                        setPrompt(`${formatNames(DOGS.filter(d => d.size == starterProfile.size).map(d => d.name), [' is a', ' are'])} ${starterProfile.size} dog.`);
                         setSearch({type: 'filter-include', payload: starterProfile.size});
                     break;
                     case 7:
@@ -70,11 +71,12 @@ const Fact = () => {
         setTimeout(()=>setPrompt(''), 10*1000)
     }}, 30*1000);
 
-    return (<div id='fact' style={{display: prompt.length ? '' : 'none'}} onClick={()=>{dispatch(search); setPrompt('')}}>
+    return (<div id='fact' style={{display: prompt.length ? '' : 'none'}} onClick={()=>{dispatch(search); setPrompt('')}} onMouseEnter={()=>setShowPawTip(true)} onMouseLeave={()=>setShowPawTip(false)}>
             <div className="fact-paw-print">
-                <div className="fact-pad fact-large">
-                    <label id="fact-text">Did you Know? <br/><br/><label style={{fontSize: '0.85em'}}>{prompt}</label></label>
+                <div className="fact-pad fact-large" >
+                    <label id="fact-text" >Did you Know? <br/><br/><label style={{fontSize: '0.85em'}}>{prompt}</label></label>
                 </div>
+                {showPawTip ? <div id='paw-tip'>View Profiles</div> : <span></span>}
                 <div className="fact-pad fact-small-1"></div>
                 <div className="fact-pad fact-small-2"></div>
                 <div className="fact-pad fact-small-3"></div>

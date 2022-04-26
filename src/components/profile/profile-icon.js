@@ -1,8 +1,7 @@
 import React, {useRef, useState, useCallback, useEffect} from 'react';
-// import 'bootstrap/dist/css/bootstrap.css';
-import Tip from 'react-tooltip';
-import '../../index.css';
+
 import ProfileDetail from './profile-detail';
+import '../../index.css';
 import './profile-icon.css'
 
 const ProfileIcon = (props) => {

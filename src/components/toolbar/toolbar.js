@@ -32,14 +32,16 @@ const Toolbar = () => {
                 <input className='toolbar-search-field' type='text' value={searchText} onChange={(e)=>setSearchText(e.target.value)} onKeyPress={(e)=>{if(e.charCode == 13) onSearch();}} placeholder='Search'/>
                 <button className={`toolbar-option`} onClick={()=>searchText.length ? setSearchText('') : onSearch()}>{searchText.length ? 'Clear' : 'Search'}</button>
             </section> 
-            <section className='toolbar-option-box'>
-                <button className={`toolbar-option toolbar-option-left${sort ? ' toolbar-option-selected' : ''}`} onClick={()=>setSort(true)}>Sort</button>
-                <button className={`toolbar-option toolbar-option-right${!sort ? ' toolbar-option-selected' : ''}`} onClick={()=>setSort(false)}>Filter</button>
-            </section>     
-            <section className='toolbar-option-box'>
-                <button className={`toolbar-option toolbar-option-left${include ? ' toolbar-option-selected' : ''}`} onClick={()=>setInclude(true)}>Inclusive</button>
-                <button className={`toolbar-option toolbar-option-right${!include ? ' toolbar-option-selected' : ''}`} onClick={()=>setInclude(false)}>Exclusive</button>
-            </section>    
+            <section className='toolbar-option-box' style={{gap: '3.0rem'}}>
+                <section className='toolbar-option-box'>
+                    <button className={`toolbar-option toolbar-option-left${sort ? ' toolbar-option-selected' : ''}`} onClick={()=>setSort(true)}>Sort</button>
+                    <button className={`toolbar-option toolbar-option-right${!sort ? ' toolbar-option-selected' : ''}`} onClick={()=>setSort(false)}>Filter</button>
+                </section>     
+                <section className='toolbar-option-box'>
+                    <button className={`toolbar-option toolbar-option-left${include ? ' toolbar-option-selected' : ''}`} onClick={()=>setInclude(true)}>Inclusive</button>
+                    <button className={`toolbar-option toolbar-option-right${!include ? ' toolbar-option-selected' : ''}`} onClick={()=>setInclude(false)}>Exclusive</button>
+                </section> 
+            </section>   
         </div>
         {addNew ? <ProfileDetail mode={'display'} onClose={()=>setAddNew(false)} /> : <span></span>}
     </div>);
