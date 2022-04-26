@@ -7,27 +7,12 @@ import{Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';
 
 //Initial Profiles
-import DOGS from './assets/dogs.js';
-
-const dogsReducer = (state = DOGS, action) => { 
-  switch(action.type) {
-    case 'set':
-      return [...state.filter(d => d.id != action.payload), action.payload];
-
-    case 'create':
-      return [...state, {...action.payload, id: new Date().getTime()}];
-
-    case 'delete':
-      return [...state.filter(d => d.id != action.payload)];
-
-    default: return state;
-  }
-}
+import INITIAL_DOG_PROFILES from './assets/dogs.js';
 
 //Priority Search
-export const prioritySearch = (search = '', include = true) => {
-    const result = DOGS.map((d) => {
-        if(!search || !search.length) return {id: d.id, score: 0};
+export const prioritySearch = (profiles, search = '', include = true) => {
+    const result = profiles.map((d) => {
+        if(!search || !search.length) return {id: d.id, score: d.transactions.reduce((p,t)=>p+t.amount, 0)};
 
         let score = 0;
         if(search.toLowerCase().includes(d.id.toString())) score += 10.0;
@@ -47,34 +32,51 @@ export const prioritySearch = (search = '', include = true) => {
         return {id: d.id, score: score * (include ? 1 : -1)};
     }).sort((a,b) => b.score-a.score);
 
-  console.log(`Sorted ${include ? 'Inclusive' : 'Exclusive'} List`, `Search: ${search}`, result);
+    if(search != '') console.log(`Sorted ${include ? 'Inclusive' : 'Exclusive'} List`, `Search: ${search}`, result);
   return result;
 }
 
-const initialSelection = DOGS.map(d => ({id: d.id, score: 0})); //All
+const initialState = {profiles: INITIAL_DOG_PROFILES, selectedSearch: INITIAL_DOG_PROFILES.map(d => ({id: d.id, score: 0}))}; 
 
-const selectionReducer = (state = initialSelection, action) => {
-  if(!action.payload || !action.payload.length)
-    return initialSelection;
-
+const dogsReducer = (state = initialState, action) => { 
   switch(action.type) {
     case 'sort-include':
-      return [...prioritySearch(action.payload, true)];
-    case 'filter-include':
-      return [...prioritySearch(action.payload, true).filter(d => d.score > 0)];
-    case 'sort-exclude':
-        return [...prioritySearch(action.payload, false)];
-    case 'filter-exclude':
-        return [...prioritySearch(action.payload, false).filter(d => d.score >= 0)];
+      return {profiles: state.profiles, 
+                selectedSearch: [...prioritySearch(state.profiles, action.payload, true)]};
 
-    default: return initialSelection; 
+    case 'filter-include':
+      return {profiles: state.profiles, 
+                selectedSearch: [...prioritySearch(state.profiles, action.payload, true).filter(d => d.score > 0)]};
+
+    case 'sort-exclude':
+        return {profiles: state.profiles, 
+                  selectedSearch: [...prioritySearch(state.profiles, action.payload, false)]};
+
+    case 'filter-exclude':
+        return {profiles: state.profiles, 
+                  selectedSearch: [...prioritySearch(state.profiles, action.payload, false).filter(d => d.score >= 0)]};
+
+    case 'set':
+      return {profiles: [...state.profiles.filter(d => d.id != action.payload.id), {...action.payload}], 
+                selectedSearch: state.selectedSearch};
+
+    case 'create':
+      const newId = new Date().getTime();       
+      return {profiles: [...state.profiles, {...action.payload, id: newId}], 
+                selectedSearch: [{id: newId, score: 0}, ...state.selectedSearch]};
+
+    case 'delete':
+      return {profiles: [...state.profiles.filter(d => d.id != action.payload.id)], 
+                selectedSearch: [...state.selectedSearch.filter(s => s.id != action.payload.id)]};
+
+    default: return state; 
   }
 }
 
 //Setup Store
 const allStateDomains = combineReducers({
   dogs: dogsReducer,
-  selection: selectionReducer
+  // selection: selectionReducer
 });
 
 const store = createStore(allStateDomains,{});;

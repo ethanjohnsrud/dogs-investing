@@ -14,7 +14,7 @@ import Toolbar from './components/toolbar/toolbar';
 //Import Initial Data OR API Call
 
 function App() {
-  const DOGS = useSelector(root => root.dogs);
+  const DOGS = useSelector(root => root.dogs).profiles;
   const dispatch = useDispatch();
 
   return (
@@ -24,6 +24,8 @@ function App() {
       <Graph />
       <ProfileDisplay />
       <Fact />
+
+      {/* <ProfileDetail {...DOGS[5]} mode={'edit'} onClose={()=>{}} /> */}
     </div>
   );
 }

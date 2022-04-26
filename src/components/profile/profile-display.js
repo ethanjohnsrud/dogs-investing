@@ -8,8 +8,8 @@ import ProfileIcon from './profile-icon';
 import './profile-icon.css'
 
 const ProfileDisplay = (props) => {
-    const SELECTED = useSelector(root => root.selection);
-    const DOGS = useSelector(root => root.dogs);
+    const SELECTED = useSelector(root => root.dogs).selectedSearch;
+    const DOGS = useSelector(root => root.dogs).profiles;
 
     return (<div id='profile-display'>
         {/* <ProfileDetail {...DOGS[3]} /> */}

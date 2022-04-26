@@ -13,8 +13,8 @@ import graphSample from '../../assets/sample-chart.png';
 import dogeMoon from '../../assets/doge-moon.png';
 
 const Graph = () => {
-    const DOGS = useSelector(root => root.dogs);
-    const SELECTED_ID = useSelector(root => root.selection); //Tested for Empty
+    const DOGS = useSelector(root => root.dogs).profiles;
+    const SELECTED_ID = useSelector(root => root.dogs).selectedSearch; //Tested for Empty
     const [dataType, setDataType] = useState('value'); //Options: holding, value, market
     const [showMoonProfile, setShowMoonProfile] = useState(false);
     const [showToolTip, setShowToolTip] = useState(false);
@@ -33,9 +33,12 @@ const getDate = (time) => `${MONTHS[new Date(time).getMonth()]}-${new Date(time)
 const getProfile = (id) => DOGS.find(d=>d.id==id);
 //Accumulated Balance Value at time of transaction
 const getBalance = (id, value = false) => DOGS.find(d=>d.id==id).transactions
-                    .reduce((p,t)=>(p + (t.amount * ((value && DOGE && DOGE.length) ? DOGE.find((D)=>(D[0]*1000)>t.date)[4] : 1))), 0);  //Convert to USD Value
+                    .reduce((p,t)=>(p + t.amount), 0) * ((value && DOGE && DOGE.length) ? DOGE[DOGE.length-1][4] : 1); //Convert to Todays USD Value
 //Current Balance - Balance at Initial Investment
-const getGrowth = (id, value = false) => getBalance(id, value) - ((value && DOGE && DOGE.length)  ? DOGE.find((D)=>(D[0]*1000)>DOGS.find(d=>d.id==id).transactions[0].date)[4] : DOGS.find(d=>d.id==id).transactions[0].amount);
+const getGrowth = (id, value = false) => getBalance(id, value) - ((value && DOGE && DOGE.length)  
+                    ? DOGS.find(d=>d.id==id).transactions
+                        .reduce((p,t)=>(p + (t.amount * (DOGE.find((D,i)=>(D[0]*1000)>t.date || (i==DOGE.length-1))[4]))), 0) //Convert to Historical Transaction USD Value
+                      : (DOGS.find(d=>d.id==id).transactions.length) ? DOGS.find(d=>d.id==id).transactions[0].amount : 0); 
 
 //Chart Data Formatting
   useEffect(()=>{if(DOGE && DOGE.length && SELECTED_ID.length) setData((dataType === 'market') ? [
@@ -46,7 +49,7 @@ const getGrowth = (id, value = false) => getBalance(id, value) - ((value && DOGE
           .map(d => ({label: d.name, 
             data: DOGE.map((D) => ({primary: D[0], //Dates are in Seconds
                 secondary: d.transactions.reduce((p,c)=> ((c.date/1000)<=(D[0])) ? p+=c.amount : p, 0)*(dataType === 'value' ? D[4] : 1) //Dates in Milliseconds
-          }))})));}, [dataType]);
+          }))})));}, [dataType, SELECTED_ID, DOGS]);
     
   const primaryAxis = useMemo(() => ({getValue: (datum) => getDate(datum.primary*1000)}),[]); //Convert Date to Milliseconds
 
@@ -78,7 +81,9 @@ const getGrowth = (id, value = false) => getBalance(id, value) - ((value && DOGE
               <div id='graph-analysis-content' > {/* Holdings Portfolio Analysis  */}
                 <label className='graph-label' >Current</label>
                     <label className='graph-detail' >{'$'}{DOGE && DOGE.length? DOGE[DOGE.length-1][4].toFixed(5) : 0} / &ETH;</label>
-                <label className='graph-label' >Average Holdings</label>
+                <label className='graph-label' >Total Holdings</label>
+                    <label className='graph-detail' >{(SELECTED_ID.length && DOGS.length) ? SELECTED_ID.reduce((p,s)=>getBalance(s.id)+p, 0) : 0} &ETH;</label>
+                  <label className='graph-label' >Average Holdings</label>
                     <label className='graph-detail' >{(SELECTED_ID.length && DOGS.length) ? SELECTED_ID.reduce((p,s)=>getBalance(s.id)+p, 0)/DOGS.length : 0} &ETH;</label>
                 <label className='graph-label' >Top Holdings</label>
                   <label className='graph-detail graph-detail-list' >
@@ -109,7 +114,7 @@ const getGrowth = (id, value = false) => getBalance(id, value) - ((value && DOGE
                   <label className='graph-detail graph-detail-list' >
                     {SELECTED_ID.length  ? [...SELECTED_ID.concat().sort((a,b)=>getGrowth(b.id, true)-getGrowth(a.id, true))].slice(0, 3).map((s,i)=><section key={i}>{getProfile(s.id).name}: {(getGrowth(s.id, true) < 0) ? '' : '+'} {'$'}{getGrowth(s.id, true).toFixed(2)}</section>) : 0}
                   </label>
-                <label className='graph-label' >Least Performing</label>
+                <label className='graph-label' >Greatest Loses</label>
                   <label className='graph-detail graph-detail-list' >
                     {SELECTED_ID.length  ? [...SELECTED_ID.concat().sort((a,b)=>getGrowth(a.id, true)-getGrowth(b.id, true))].slice(0, 3).map((s,i)=><section key={i}>{getProfile(s.id).name}: {(getGrowth(s.id, true) < 0) ? '' : '+'} {'$'}{getGrowth(s.id, true).toFixed(2)}</section>) : 0}
                   </label>

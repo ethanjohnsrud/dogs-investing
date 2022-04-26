@@ -6,7 +6,7 @@ import '../../index.css';
 import './fact.css'
 
 const Fact = () => {
-    const DOGS = useSelector(root => root.dogs);
+    const DOGS = useSelector(root => root.dogs).profiles;
     const dispatch = useDispatch();
     const [prompt, setPrompt] = useState('');
     const [search, setSearch] = useState('');
@@ -24,7 +24,7 @@ const Fact = () => {
     }
     //Custom Hook
     useInterval(()=>{
-            if(!DOGS || !DOGS.length) setPrompt('You can add a dog profile to begin!');
+            if(!DOGS || !DOGS.length) {setPrompt('You can add a dog profile in the upper right to begin!'); setSearch('');}
             else {
                 const starterProfile = DOGS[Math.floor(Math.random() * DOGS.length)];
                 switch (Math.floor(Math.random() *7)) {        

@@ -8,7 +8,7 @@ import addLogo from '../../assets/logo-add-white.png';
 import ProfileDetail from '../profile/profile-detail';
 
 const Toolbar = () => {
-    const DOGS = useSelector(root => root.dogs);
+    const DOGS = useSelector(root => root.dogs).profiles;
     const dispatch = useDispatch();
 
     const [addNew, setAddNew] = useState(false);
@@ -16,7 +16,7 @@ const Toolbar = () => {
     const [sort, setSort] = useState(true);
     const [include, setInclude] = useState(true);
 
-    const onSearch = (search = searchText) => { console.log(`${sort ? 'sort' : 'filter'}-${include ? 'include' : 'exclude'}`, 'Searching: ', searchText)
+    const onSearch = (search = searchText) => { 
         dispatch({type: `${sort ? 'sort' : 'filter'}-${include ? 'include' : 'exclude'}`, payload: search});
     }
     useEffect(()=>onSearch(),[searchText, sort, include]);
@@ -43,7 +43,7 @@ const Toolbar = () => {
                 </section> 
             </section>   
         </div>
-        {addNew ? <ProfileDetail mode={'display'} onClose={()=>setAddNew(false)} /> : <span></span>}
+        {addNew ? <ProfileDetail mode={'edit'} onClose={()=>setAddNew(false)} /> : <span></span>}
     </div>);
 
 }

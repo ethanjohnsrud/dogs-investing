@@ -48,8 +48,8 @@ import dogXL from '../../assets/dog-extra-large.png';
 const ProfileDetail = (props) => {
 //Mode Getters
     const [mode, setMode] = useState(props.mode || 'display');
-    const isPreview = () => mode == 'preview';
-    const isEdit = () => mode == 'edit';
+    const isPreview = () => mode === 'preview';
+    const isEdit = () => mode === 'edit';
 
 //State Management for Editing Attributes
     const [errorText, setErrorText] = useState('');
@@ -60,56 +60,67 @@ const ProfileDetail = (props) => {
     const [balance, setBalance] = useState(props.balance || 0);
     const [description, setDescription] = useState(props.description || '');
     const [size, setSize] = useState(props.size || 'MD');
+    const [transactions, setTransactions] = useState(props.transactions || [{date: new Date().getTime(), amount: 0}]);
 
 /* isChanged() :: Returns: 
 false : no change to data
 true : valid data ready to submit
 string : invalid data explanation
 */
-    const isChanged = () => { let change = false;
+    const isChanged = () => { let change = false; 
         if(!name || !name.length) return 'Invalid Name';
         else if(props.name != name) change = true;
-        if(!owner) return 'Invalid Owner';
+        if(owner == undefined) return 'Invalid Owner';
         else if(props.owner != owner) change = true;
-        if(!imageURL) return 'Invalid Image URL';
+        if(imageURL == undefined) return 'Invalid Image URL';
         else if(props.image != imageURL) change = true;
-        if(!breed) return 'Invalid Breed';
+        if(breed == undefined) return 'Invalid Breed';
         else if(props.breed != breed) change = true;
         if(isNaN(balance) || balance < 0.0) return 'Invalid Doge Coin Balance';
         else if(props.balance != balance) change = true;
-        if(!description ) return 'Invalid Description';
+        if(description == undefined) return 'Invalid Description';
         else if(props.description != description) change = true;
         if(!size || !size.length) return 'Invalid Size';
         else if(props.size != size) change = true;
+    //Deep Search Transaction Properties Comparison
+        transactions.forEach((t) => { let found = false;
+            if(props.transactions && props.transactions.length){ 
+                if(isNaN(t.date) || t.date < 0.0 || t.date > new Date().getTime() || isNaN(t.amount) || t.amount < 0.0) return 'Invalid Transactions';
+                props.transactions.forEach((p)=>{
+                    if(t.date == p.date && t.amount == p.amount) found = true;
+                });
+            } else change = true;
+            //if(!found) change = true;        
+        });
         return change;
     }
     
     useEffect(()=>{  const result = isChanged(); 
-        if(typeof result === "string") setErrorText(result);
-    }, [name, owner, imageURL, breed, balance, description, size]);
+        setErrorText(typeof result === "string" ? result : '');
+    }, [name, owner, imageURL, breed, balance, description, size, transactions]);
 
     //OnSubmit Handlers
     const dispatch = useDispatch();
     const onSave = (event) => {
         event.stopPropagation();
-        if(isChanged !== true) return;
+        if(isChanged() !== true) return;
         dispatch({type: (props.id != undefined) ? 'set' : 'create', payload: {
-            id: props.id,
+            // id: props.id,
             name: name,
             breed: breed,
             owner: owner,
             size: size,
             description: description,
             balance: balance,
-            image: imageURL
+            image: imageURL,
+            transactions: transactions.sort((a,b)=>a.date-b.date)
         }});
         props.onClose();
     }
 
     const onDelete = (event) => {
         event.stopPropagation();
-        if(isChanged !== true) return;
-        dispatch({type: 'delete', payload: props.id});
+        dispatch({type: 'delete', payload: {id: props.id}});
         props.onClose();
     }
        
@@ -166,12 +177,12 @@ string : invalid data explanation
                             : dogXL }/> 
                     </section>}
 
-                <label className='profile-error-text' style={{gridColumn: '1 / span 2'}} >{errorText}</label>
+            <label className='profile-error-text' style={{gridColumn: '1 / span 2'}} >{errorText}</label>
             <section style={{display:'flex', flexDirection: 'row', gridColumn: '1 / span 2'}} >
                 {!isPreview() ? <button className='profile-button' onClick={(e)=>{e.stopPropagation(); props.onClose(e);}}>{isEdit() ? 'Cancel' : 'Close'}</button>: <span></span>}
                 {!isPreview() && !isEdit() ? <button className='profile-button profile-button-submit' onClick={(e)=>setMode('edit')}>Edit</button>
-                    : isEdit() && props.id ? <button className='profile-button profile-button-delete' onClick={(e)=>(errorText.length) ? null : onDelete(e)}>Delete</button>: <span></span>}
-                {isChanged() === true ? <button className='profile-button profile-button-submit' onClick={(e)=>(errorText.length) ? null : onSave(e)}>Save</button>: <span></span>}
+                    : isEdit() && props.id ? <button className='profile-button profile-button-delete' onClick={onDelete}>Delete</button>: <span></span>}
+                {isChanged() === true ? <button className='profile-button profile-button-submit' onClick={onSave} >Save</button>: <span></span>}
             </section>
         </div>
     </div>);
