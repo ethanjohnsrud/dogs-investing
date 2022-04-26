@@ -1,20 +1,19 @@
-import React, {useRef, useState, useCallback, useEffect} from 'react';
-import { useSelector, useDispatch} from 'react-redux';
+import React, { useState, useEffect} from 'react';
+import {useDispatch} from 'react-redux';
 
-// import 'bootstrap/dist/css/bootstrap.css';
-import Tip from 'react-tooltip';
-import ProfileIcon from './profile-icon';
 import '../../index.css';
 import './profile-icon.css'
 import './profile-detail.css'
 
-//Import Assets
 import DOGE from '../../assets/dogeYTD';
 import dogXS from '../../assets/dog-extra-small.png';
 import dogSM from '../../assets/dog-small.png';
 import dogMD from '../../assets/dog-medium.png';
 import dogLG from '../../assets/dog-large.png';
 import dogXL from '../../assets/dog-extra-large.png';
+
+import ProfileIcon from './profile-icon';
+
 
 /* THREE MODES OF DISPLAY
 //Preview  : onHover
@@ -203,7 +202,6 @@ export default ProfileDetail;
 const SizeIcon = (props) => {
     return (<div className='profile-size-icon'>
         <img className='profile-size-icon-image'  style={{border: (props.selected == props.size) ? '2px solid black' : 'none'}} src={props.icon} onClick={(e)=>props.onSelect(props.size)}/>
-        {/* <label className='profile-size-icon-label'>{props.size}</label> */}
     </div>);
 }
 

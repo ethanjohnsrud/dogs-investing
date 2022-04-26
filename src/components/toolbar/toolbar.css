@@ -30,23 +30,10 @@
     }
   }
 .logo {
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 3.5rem;
+    width: auto;
     margin: auto;
     cursor: pointer;
-}
-
-
-.toolbar-search-field {
-    text-decoration: none;
-    border: none;
-    margin: 0 1.0rem;
-    width: calc(100vw - 12.0rem);
-    /* min-width: 300px; */
-
-    text-align: center;
-    font-size: 1.2rem;
-    color: white;
 }
 
 .toolbar-option-box {
@@ -55,9 +42,7 @@
     align-items: center;
     justify-content: space-between;
 
-    /* width: 100%; */
-
-    margin: 0.5rem auto;
+    margin: 0.25rem auto;
 }
 
 .toolbar-option {
@@ -65,12 +50,27 @@
     border: none;
     width: 100%;
     min-width: 6.0rem;
-    /* margin: auto; */
 
     font-weight: 700;
     text-align: center;
     padding: 0.4rem 1.0rem;
-    cursor: grab;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+.toolbar-option:hover {
+    background-color: black;
+    color: white;
+}
+
+.toolbar-search-field {
+    text-decoration: none;
+    border: none;
+    margin: 0 1.0rem;
+    width: calc(100vw - 12.0rem);
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 0.4rem 1.0rem;
+    color: black;
 }
 
 .toolbar-option-left {
@@ -88,5 +88,20 @@
 .toolbar-option-selected {
     color: white;  
     background-color: black;
+}
+
+#add-tip {
+    position: absolute;
+    right: 8.0rem;
+    top: 1.5rem;
+    z-index: 5;
+    width: fit-content;
+    white-space: nowrap;
+
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    background-color: rgba(0,0,0,0.8);
+    color: white;
 }
 

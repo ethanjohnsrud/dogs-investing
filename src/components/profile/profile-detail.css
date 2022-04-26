@@ -29,7 +29,7 @@
     border-radius: 1.0rem;
     padding: 1.0rem;
     margin: 0.5rem;
-    box-shadow: 4px 5px #404040;
+    box-shadow: 4px 5px rgba(0,0,0,0.3);
 }
 
 .profile-attribute {
@@ -94,9 +94,9 @@
     border-radius: 0.1rem;
     margin: 0.5rem auto;
     padding: 0.2rem 1.5rem;
-    font-weight: 800;
+    font-weight: 600;
     /* max-width: 5.0rem; */
-    background-color: white;
+    background-color: #e0e0e0;
     cursor: pointer;
 }
 .profile-button-delete {
@@ -112,7 +112,8 @@ input, textarea {
     text-decoration: none;
     border: none;
     border-radius: 3px;
-    background-color: rgba(0,0,0,0.1);
+    background-color: #f0f0f0;
+    color: black;
     padding: 0.35rem 0.5rem;
     /* width: 50%; */
 }
@@ -146,17 +147,3 @@ input, textarea {
     
     }
   }
-
-.profile-size-icon-label {
-    position: absolute;
-    left: 30%;
-    bottom: -10%;
-    /* transform: translate(-50%,-50%); */
-    z-index: 12;
-
-    font-weight: 700;
-    font-size: 15px;
-    padding: 5px;
-    background-color: whitesmoke;
-    color: black;
-}

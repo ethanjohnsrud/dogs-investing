@@ -1,8 +1,9 @@
-import React, {useRef, useState, useCallback, useEffect} from 'react';
+import React, { useState} from 'react';
 
-import ProfileDetail from './profile-detail';
 import '../../index.css';
 import './profile-icon.css'
+
+import ProfileDetail from './profile-detail';
 
 const ProfileIcon = (props) => {
     const [showDetailMode, setShowDetailMode] = useState(false);

@@ -1,16 +1,15 @@
-import React, {useRef, useState, useMemo, useCallback, useEffect} from 'react';
-import { useSelector, useDispatch} from 'react-redux';
+import React, {useState, useMemo, useEffect} from 'react';
+import { useSelector} from 'react-redux';
 import { AxisOptions, Chart } from "react-charts"; //Source: https://react-charts.tanstack.com/
 
-import ProfileDetail from '../profile/profile-detail';
 import '../../index.css';
 import './graph.css'
 
 import DOGE from '../../assets/dogeYTD'; //Tested for Undefined & Empty
-
-
-import graphSample from '../../assets/sample-chart.png';
 import dogeMoon from '../../assets/doge-moon.png';
+
+import ProfileDetail from '../profile/profile-detail';
+
 
 const Graph = () => {
     const DOGS = useSelector(root => root.dogs).profiles;
