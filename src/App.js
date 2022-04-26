@@ -25,7 +25,7 @@ function App() {
       <ProfileDisplay />
       <Fact />
 
-      {/* <ProfileDetail {...DOGS[5]} mode={'edit'} onClose={()=>{}} /> */}
+      {/* <ProfileDetail {...DOGS[7]} mode={'edit'} onClose={()=>{}} /> */}
     </div>
   );
 }

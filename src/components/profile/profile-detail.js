@@ -9,6 +9,7 @@ import './profile-icon.css'
 import './profile-detail.css'
 
 //Import Assets
+import DOGE from '../../assets/dogeYTD';
 import dogXS from '../../assets/dog-extra-small.png';
 import dogSM from '../../assets/dog-small.png';
 import dogMD from '../../assets/dog-medium.png';
@@ -38,6 +39,7 @@ import dogXL from '../../assets/dog-extra-large.png';
 -Owner
 -Image URL
 -Breed
+-Transactions
 -Balance
 -Description
 -Size Options & Selection
@@ -50,6 +52,7 @@ const ProfileDetail = (props) => {
     const [mode, setMode] = useState(props.mode || 'display');
     const isPreview = () => mode === 'preview';
     const isEdit = () => mode === 'edit';
+    const isDisplay = () => !isPreview() && !isEdit();
 
 //State Management for Editing Attributes
     const [errorText, setErrorText] = useState('');
@@ -61,6 +64,7 @@ const ProfileDetail = (props) => {
     const [description, setDescription] = useState(props.description || '');
     const [size, setSize] = useState(props.size || 'MD');
     const [transactions, setTransactions] = useState(props.transactions || [{date: new Date().getTime(), amount: 0}]);
+    const [transactionsUpdated, setTransactionsUpdated] = useState(false);
 
 /* isChanged() :: Returns: 
 false : no change to data
@@ -82,16 +86,8 @@ string : invalid data explanation
         else if(props.description != description) change = true;
         if(!size || !size.length) return 'Invalid Size';
         else if(props.size != size) change = true;
-    //Deep Search Transaction Properties Comparison
-        transactions.forEach((t) => { let found = false;
-            if(props.transactions && props.transactions.length){ 
-                if(isNaN(t.date) || t.date < 0.0 || t.date > new Date().getTime() || isNaN(t.amount) || t.amount < 0.0) return 'Invalid Transactions';
-                props.transactions.forEach((p)=>{
-                    if(t.date == p.date && t.amount == p.amount) found = true;
-                });
-            } else change = true;
-            //if(!found) change = true;        
-        });
+        if(transactionsUpdated) change = true;
+
         return change;
     }
     
@@ -136,8 +132,8 @@ string : invalid data explanation
                     : <ProfileIcon {...props} viewOnly={true} /> }
             </section>}
             
-            {!isPreview() ? <label className='profile-attribute' >Id:</label>:<span></span>}
-            {!isPreview() ? <label className='profile-text' >{props.id || 'New Profile'}</label>:<span></span>}
+            {isEdit() ? <label className='profile-attribute' >Id:</label>:<span></span>}
+            {isEdit() ? <label className='profile-text' >{props.id || 'New Profile'}</label>:<span></span>}
 
             {isEdit() ? <label className='profile-attribute' >Name:</label>:<span></span>}
             {isEdit() ? <input type='text' className='profile-text' value={name} onChange={(event)=>setName(event.target.value)}/>:<span></span>}
@@ -153,9 +149,25 @@ string : invalid data explanation
             {isEdit() ? <input type='text' className='profile-text' value={breed} onChange={(event)=>setBreed(event.target.value)}/>
                 : <label className='profile-text' >{props.breed}</label>}
 
+            {isEdit() ? <label className='profile-attribute' >Transactions:</label>: <span></span>}
+            {isEdit() ? <section className='profile-transactions' >
+                {transactions.map((t,i)=>
+                    <section key={`transaction-${i}`} className='profile-transactions-entry'>
+                        <input type='date' className='profile-transactions-date' value={new Date(t.date).toISOString().slice(0,10)} onChange={(event)=>{setTransactions(T => {T[i].date= new Date(event.target.value).getTime(); return [...T];}); setTransactionsUpdated(true);} }/>
+                        <input type='number' className='profile-transactions-amount' value={t.amount} step={1} min={0} onChange={(event)=>{if(!isNaN(parseFloat(event.target.value))) {setTransactions(T => {T[i].amount= parseFloat(event.target.value); return [...T];}); setTransactionsUpdated(true);}}} />
+                        <button className='profile-transactions-delete' onClick={()=>{setTransactions(T =>{ T.splice(i,1); return [...T];}); setTransactionsUpdated(true);}} >X</button>
+                    </section>)}
+                    <section key={'New Transaction'} className='profile-transactions-entry'>
+                        <label className='profile-transactions-date' style={{textAlign: 'right'}}>New Entry:</label>
+                        <input type='number' className='profile-transactions-amount'  step={1} min={0} onKeyUp={(event)=>{if(event.keyCode == 13 && !isNaN(parseFloat(event.target.value))) {setTransactions(T => {T.push({date: new Date().getTime(), amount: parseFloat(event.target.value)}); return [...T];}); setTransactionsUpdated(true);}}} placeholder={'New Amount'}/>
+                    </section>
+                </section>:<span></span>}
+
             <label className='profile-attribute' >Dogecoin:</label>
-            {isEdit() ? <input type='number' className='profile-text' value={balance} onChange={(event)=>setBalance(event.target.value)}/>
-                : <label className='profile-text' >{props.balance} &ETH;</label>}
+            <label className='profile-text' >{transactions.reduce((p,t)=>p+t.amount, 0)} &ETH;</label>
+
+            <label className='profile-attribute' >Portfolio:</label>
+            <label className='profile-text' >{'$'}{(transactions.reduce((p,t)=>p+t.amount, 0) * ((DOGE && DOGE.length) ? DOGE[DOGE.length-1][4] : 1)).toFixed(2)}</label>
                 
             {!isPreview() ? <label className='profile-attribute' >Description:</label>:<span></span>}
             {isEdit() ? <textarea className='profile-text' style={{gridColumn: '1 / span 2'}} rows='5' value={description} onChange={(event)=>setDescription(event.target.value)}/>

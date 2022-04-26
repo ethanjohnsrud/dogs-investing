@@ -48,6 +48,39 @@
     font-size: 0.9rem;
 }
 
+/* Transactions Edit  */
+.profile-transactions {
+    display: grid;
+    grid-auto-flow: row;
+    gap: 0.25rem;
+    overflow: auto;
+    max-height: 8.0rem;
+}
+.profile-transactions-entry {
+    display: grid;
+    grid-template-columns: 1fr 1fr min-content;
+    grid-auto-flow: column;
+    gap: 0.5rem;    
+}
+.profile-transactions-date {
+    grid-column: 1;
+    min-width: 8.0rem;
+    padding: 0.35rem 0.5rem;
+    cursor: pointer;
+}
+.profile-transactions-amount {
+    grid-column: 2;
+    min-width: 8.0rem;
+    padding: 0.35rem 0.5rem;
+}
+.profile-transactions-delete {
+    grid-column: 3;
+    padding: 0.35rem;
+}
+.profile-transactions-delete:hover {
+    color: red;
+    cursor: not-allowed;
+}
 
 /* Edit Button Controls  */
 .profile-error-text {
@@ -64,7 +97,7 @@
     font-weight: 800;
     /* max-width: 5.0rem; */
     background-color: white;
-
+    cursor: pointer;
 }
 .profile-button-delete {
     color: white;
@@ -80,7 +113,7 @@ input, textarea {
     border: none;
     border-radius: 3px;
     background-color: rgba(0,0,0,0.1);
-    padding: 3px 10px;
+    padding: 0.35rem 0.5rem;
     /* width: 50%; */
 }
 
