@@ -22,7 +22,7 @@ export const prioritySearch = (profiles, search = '', include = true) => {
         else if(search.toLowerCase().includes('medium') && d.size === 'MD') score += 2.0;
         else if(search.toLowerCase().includes('large') && d.size === 'LG') score += 2.0;
         else if(search.toLowerCase().includes('extra large') && d.size === 'XL') score += 2.0;
-        search.split(' ').forEach(w => {
+        search.toLowerCase().split(' ').forEach(w => {
         if(d.description.toLowerCase().includes(w)) score += 0.5;
         });
 

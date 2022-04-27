@@ -90,7 +90,7 @@ const getGrowth = (id, performance = false) => getBalance(id, performance) - ((p
                 <label className='graph-label' >Total Holdings</label>
                     <label className='graph-detail' >{(SELECTED_ID.length && DOGS.length) ? SELECTED_ID.reduce((p,s)=>getBalance(s.id)+p, 0) : 0} &ETH;</label>
                   <label className='graph-label' >Average Holdings</label>
-                    <label className='graph-detail' >{(SELECTED_ID.length && DOGS.length) ? SELECTED_ID.reduce((p,s)=>getBalance(s.id)+p, 0)/DOGS.length : 0} &ETH;</label>
+                    <label className='graph-detail' >{(SELECTED_ID.length && DOGS.length) ? SELECTED_ID.reduce((p,s)=>getBalance(s.id)+p, 0)/SELECTED_ID.length : 0} &ETH;</label>
                 <label className='graph-label' >Top Holdings</label>
                   <label className='graph-detail graph-detail-list' >
                     {(SELECTED_ID.length && DOGS.length) ? [...SELECTED_ID.concat().sort((a,b)=>getBalance(b.id)-getBalance(a.id))].slice(0, 3).map((s,i)=><section key={i}>{getProfile(s.id).name}: {getBalance(s.id)} &ETH;</section>) : 0}
@@ -111,7 +111,7 @@ const getGrowth = (id, performance = false) => getBalance(id, performance) - ((p
                   <label className='graph-label' >Total Value</label>
                     <label className='graph-detail' >{'$'}{(SELECTED_ID.length) ? SELECTED_ID.reduce((p,s)=>getBalance(s.id, true)+p, 0).toFixed(2) : 0}</label>
                 <label className='graph-label' >Average Value</label>
-                    <label className='graph-detail' >{'$'}{(SELECTED_ID.length) ? (SELECTED_ID.reduce((p,s)=>getBalance(s.id, true)+p, 0)/DOGS.length).toFixed(2) : 0}</label>
+                    <label className='graph-detail' >{'$'}{(SELECTED_ID.length) ? (SELECTED_ID.reduce((p,s)=>getBalance(s.id, true)+p, 0)/SELECTED_ID.length).toFixed(2) : 0}</label>
                 <label className='graph-label' >Top Performance</label>
                   <label className='graph-detail graph-detail-list' >
                     {SELECTED_ID.length  ? [...SELECTED_ID.concat().sort((a,b)=>getBalance(b.id)-getBalance(a.id))].slice(0, 3).map((s,i)=><section key={i}>{getProfile(s.id).name}: {'$'}{getBalance(s.id, true).toFixed(2)}</section>) : 0}

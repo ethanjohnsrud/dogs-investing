@@ -3,7 +3,7 @@
 Developed by Ethan Johnsrud
 4-25-2022
 
-## Available Scripts
+## Summary
 'Voyant Dogs Investing,' Application is the perfect platform to monitor all the office dogs investments in their favorite cryptocurrency, DogeCoin!  Analyze the dog's holdings, portfolio performance, and market analysis all in one place.  Intuitive search and filtering metrics to focus predictions and find out which dog is going to the Moon!
 
 [Check Out Live Site](https://ethanjohnsrud.github.io/dogs-investing/)
@@ -17,8 +17,8 @@ Developed by Ethan Johnsrud
 [React Charts](https://react-charts.tanstack.com/)
 
 ### Dependencies
--React 18.0.0v
--Redux 8.0.1v
--JavaScript
--HTML
--CSS
+- React 18.0.0v
+- Redux 8.0.1v
+- JavaScript
+- HTML
+- CSS

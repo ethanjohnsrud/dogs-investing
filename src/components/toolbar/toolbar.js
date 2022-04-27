@@ -18,7 +18,7 @@ const Toolbar = () => {
 
     const [addNew, setAddNew] = useState(false);
     const [searchText, setSearchText] = useState('');
-    const [sort, setSort] = useState(true);
+    const [sort, setSort] = useState(false);
     const [include, setInclude] = useState(true);
     const [showToolTip, setShowToolTip] = useState(false);
 
