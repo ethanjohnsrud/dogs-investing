@@ -12,24 +12,21 @@ export const prioritySearch = (profiles, search = '', include = true) => {
         if(!search || !search.length) return {id: d.id, score: d.transactions.reduce((p,t)=>p+t.amount, 0)};
 
         let score = 0;
-        if(search.toLowerCase().includes(d.id.toString())) score += 10.0;
-        if(search.toLowerCase().includes(d.name.toLowerCase())) score += 5.0;
-        if(search.toLowerCase().includes(d.owner.toLowerCase())) score += 3.0;
-        if(search.toLowerCase().includes(d.breed.toLowerCase())) score += 2.0;
-        if(search.toLowerCase().includes(d.size.toLowerCase())) score += 2.0;
-        else if(search.toLowerCase().includes('extra small') && d.size === 'XS') score += 2.0;
-        else if(search.toLowerCase().includes('small') && d.size === 'SM') score += 2.0;
-        else if(search.toLowerCase().includes('medium') && d.size === 'MD') score += 2.0;
-        else if(search.toLowerCase().includes('large') && d.size === 'LG') score += 2.0;
-        else if(search.toLowerCase().includes('extra large') && d.size === 'XL') score += 2.0;
-        search.toLowerCase().split(' ').forEach(w => {
-        if(d.description.toLowerCase().includes(w)) score += 0.5;
-        });
-
+        if(new RegExp(`\\b(${search.split(' ').filter(r => !!r).join("|")})`, 'i').test(d.id.toString())) score += 10.0;
+        if(new RegExp(`\\b(${search.split(' ').filter(r => !!r).join("|")})`, 'i').test(d.name)) score += 5.0;
+        if(new RegExp(`\\b(${search.split(' ').filter(r => !!r).join("|")})`, 'i').test(d.owner)) score += 3.0;
+        if(new RegExp(`\\b(${search.split(' ').filter(r => !!r).join("|")})`, 'i').test(d.breed)) score += 2.0;
+        if(new RegExp(`\\b(${search.split(' ').filter(r => !!r).join("|")})`, 'i').test(d.size)) score += 2.0;
+        else if(new RegExp(`\\b(${search.split(' ').filter(r => !!r).join("|")})`, 'i').test('extra small') && d.size === 'XS') score += 2.0;
+        else if(new RegExp(`\\b(${search.split(' ').filter(r => !!r).join("|")})`, 'i').test('small') && d.size === 'SM') score += 2.0;
+        else if(new RegExp(`\\b(${search.split(' ').filter(r => !!r).join("|")})`, 'i').test('medium') && d.size === 'MD') score += 2.0;
+        else if(new RegExp(`\\b(${search.split(' ').filter(r => !!r).join("|")})`, 'i').test('large') && d.size === 'LG') score += 2.0;
+        else if(new RegExp(`\\b(${search.split(' ').filter(r => !!r).join("|")})`, 'i').test('extra large') && d.size === 'XL') score += 2.0;
+          score += ((d.description.match(new RegExp(`\\b(${search.split(' ').filter(r => !!r).join("|")})`, 'gi')) || []).length * 0.5);
         return {id: d.id, score: score * (include ? 1 : -1)};
     }).sort((a,b) => b.score-a.score);
 
-    if(search != '') console.log(`Sorted ${include ? 'Inclusive' : 'Exclusive'} List`, `Search: ${search}`, result);
+    if(search != '') console.log(`Sorted ${include ? 'Inclusive' : 'Exclusive'} List`, `Search: ${search.split(' ').filter(r => !!r).join("|")}`, result);
   return result;
 }
 
